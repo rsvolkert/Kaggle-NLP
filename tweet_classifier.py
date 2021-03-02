@@ -53,29 +53,30 @@ train['clean_text'] = train['text'].apply(lambda x : clean(x))
 train2 = train.sample(frac=.6, random_state=400)
 test2 = train.drop(train2.index)
 
-## TfIdf
-tfidf = TfidfVectorizer()
-
-train_tf_features = tfidf.fit_transform(train2['clean_text'])
-test_tf_features = tfidf.transform(test2['clean_text'])
-
-# svm
-acc = append_df('SVM', 'tfdif', LinearSVC(random_state=400))
-
-# logistic regression
-acc = append_df('Logistic Regression', 'tfdif', LogisticRegression(random_state=400))
-
-# random forest
-acc = append_df('Random Forest', 'tfdif', RandomForestClassifier(random_state=400))
-
-# naive bayes
-acc = append_df('Naive Bayes', 'tfdif', MultinomialNB())
-
 ## BoW
 bow = CountVectorizer()
 
 train_bow_features = bow.fit_transform(train2['clean_text'])
 test_bow_features = bow.transform(test2['clean_text'])
+
+## TfIdf
+tfidf = TfidfVectorizer(ngram_range = (1,2))
+
+train_tf_features = tfidf.fit_transform(train2['clean_text'])
+test_tf_features = tfidf.transform(test2['clean_text'])
+
+# svm
+acc = append_df('SVM', 'tfidf', LinearSVC(random_state=400))
+
+# logistic regression
+acc = append_df('Logistic Regression', 'tfidf', LogisticRegression(random_state=400))
+
+# random forest
+acc = append_df('Random Forest', 'tfidf', RandomForestClassifier(random_state=400))
+
+# naive bayes
+acc = append_df('Naive Bayes', 'tfidf', MultinomialNB())
+
 
 # svm
 acc = append_df('SVM', 'bow', LinearSVC(random_state=400))
