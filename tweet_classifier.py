@@ -26,9 +26,9 @@ def clean(text):
             lemma.append(lemmatizer.lemmatize(word))
     lemma = ' '.join([word for word in lemma])
     nopunct = "".join([char for char in lemma if char not in string.punctuation])
-    clean = re.sub(' +', ' ', nopunct)
+    clean_text = re.sub(' +', ' ', nopunct)
     
-    return clean.lower()
+    return clean_text.lower()
 
 train['clean_text'] = train['text'].apply(lambda x : clean(x))
 
