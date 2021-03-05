@@ -8,6 +8,7 @@ from keras.models import Sequential
 from keras.layers import Dense
 from keras.layers import Flatten
 from keras.layers.embeddings import Embedding
+from keras.layers.convolutional import Conv1D, MaxPooling1D
 
 def clean(text):
     nourl = re.sub(r'[\S|\s]http\S+', '', text)
@@ -61,5 +62,17 @@ model.add(Flatten())
 model.add(Dense(1, activation='sigmoid'))
 model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
 
-model.fit(train_pad, train2.target, epochs=100, verbose=1)
+model.fit(train_pad, train2.target, epochs=100, verbose=2)
 loss, accuracy = model.evaluate(test_pad, test2.target, verbose=0)
+
+# tryin a CNN
+cnn = Sequential()
+cnn.add(embedding_layer)
+cnn.add(Conv1D(filters=128, kernel_size=5, activation='relu'))
+cnn.add(MaxPooling1D(pool_size=2))
+cnn.add(Flatten())
+cnn.add(Dense(1, activation='sigmoid'))
+cnn.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+
+cnn.fit(train_pad, train2.target, epochs=10, verbose=2)
+loss, cnn_acc = cnn.evaluate(test_pad, test2.target, verbose=0)
