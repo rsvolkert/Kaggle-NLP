@@ -9,6 +9,10 @@ from keras.layers import Dense
 from keras.layers import Flatten
 from keras.layers.embeddings import Embedding
 from keras.layers.convolutional import Conv1D, MaxPooling1D
+from tensorflow.random import set_seed
+
+np.random.seed(400)
+set_seed(400)
 
 def clean(text):
     nourl = re.sub(r'[\S|\s]http\S+', '', text)
