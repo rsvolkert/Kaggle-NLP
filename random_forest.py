@@ -1,19 +1,10 @@
-import os
 import re
 
-import gensim
-import gensim.downloader
-import matplotlib.pyplot as plt
-import numpy as np
 import pandas as pd
-import seaborn as sb
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import GridSearchCV
-from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import train_test_split
 import spacy
-import tensorflow as tf
-
 
 
 def clean_text(text):
