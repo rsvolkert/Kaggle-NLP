@@ -102,3 +102,5 @@ nb_bow = MultinomialNB()
 nb_bow_fit = nb_bow.fit(train_bow, train2.target)
 nb_bow_pred = nb_bow_fit.predict(test_bow)
 acc = append_df('Naive Bayes', 'bow', nb_bow_pred)
+
+print(acc)

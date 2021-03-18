@@ -37,11 +37,7 @@ tfidf = TfidfVectorizer(ngram_range=(1, 2))
 
 train_tf = tfidf.fit_transform(train.clean_text)
 
-# grid CV
-grid = {'penalty': ['l1', 'l2', 'elasticnet', 'none'],
-        'dual': [True, False],
-        'solver': ['newton-cg', 'lbfgs', 'liblinear', 'sag', 'saga'],
-        'C': [100, 10, 1, 0.1, 0.01]}
+# Logistic Regression
 
 model = LogisticRegression(random_state=400)
 model.fit(train_tf, train['target'].values)

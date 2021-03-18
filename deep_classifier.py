@@ -69,6 +69,8 @@ model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy']
 model.fit(train_pad, train2.target, epochs=100, verbose=2)
 loss, accuracy = model.evaluate(test_pad, test2.target, verbose=0)
 
+print(accuracy)
+
 # tryin a CNN
 cnn = Sequential()
 cnn.add(embedding_layer)
@@ -80,3 +82,5 @@ cnn.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
 
 cnn.fit(train_pad, train2.target, epochs=10, verbose=2)
 loss, cnn_acc = cnn.evaluate(test_pad, test2.target, verbose=0)
+
+print(cnn_acc)
